@@ -1,0 +1,50 @@
+# circuit breaker
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      admin:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50             # if 50% requests failed 
+        minimumNumberOfCalls: 5              # even if serach servuce is down make a 5 calls 
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3   
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+        
+  retry:
+    instances:
+      admin:
+        maxAttempts: 3
+        waitDuration: 3000       
+
+
+#resilience4j.retry:
+#  instances:
+#    admin:
+#      maxAttempts: 3
+#      waitDuration: 3000
+      
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+ 

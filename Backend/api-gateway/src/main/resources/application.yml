@@ -1,0 +1,99 @@
+server:
+  port: 9001
+  
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+  
+  
+spring:
+  application:
+    name: Api-gateway
+    
+  cloud:
+    gateway:
+      default-filters:
+      - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: 
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            allowedHeaders: "*"   
+      routes:
+      - id: flightsearch
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/**
+      - id: flightbooking
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/**
+      - id: flightcheckin
+        uri: http://localhost:8083/
+        predicates:
+        - Path=/**
+      - id: flightpayment
+        uri: http://localhost:8089/
+        predicates:
+        - Path=/payment/**
+      - id: admin-service
+        uri: http://localhost:8064/
+        predicates:
+        - Path=/admin/**
+      - id: spring-boot-security-jwt-mongodb
+        uri: http://localhost:8085/
+        predicates:
+        - Path=/api/auth/**  
+      - id: spring-boot-security-jwt-mongodb
+        uri: http://localhost:8085/
+        predicates:
+        - Path=/api/test/**    
+        
+                   
+#      routes:
+#      - id: trueup-service
+#        uri: http://localhost:9091/
+#        predicates:
+#        - Path=/** 
+
+#cloud:
+#    gateway:
+#      routes:
+#      - id: flightsearch
+#        uri: http://localhost:8081/
+#        predicates:
+#        - Path=/**
+#      - id: flightbooking
+#        uri: http://localhost:8082/
+#        predicates:
+#        - Path=/**
+#      - id: flightcheckin
+#        uri: http://localhost:8083/
+#        predicates:
+#        - Path=/**
+#      - id: flightpayment
+#        uri: http://localhost:8089/
+#        predicates:
+#        - Path=/payment/**
+#      - id: admin-service
+#        uri: http://localhost:8064/
+#        predicates:
+#      - id: spring-boot-security-jwt-mongodb
+#        uri: http://localhost:8085/
+#        predicates:
+#        - Path=/api/auth/**  
+#      - id: spring-boot-security-jwt-mongodb
+#        uri: http://localhost:8085/
+#        predicates:
+#        - Path=/api/test/**  
+        
