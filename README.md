@@ -22,7 +22,5 @@
 
 ### Architecture
 
-![image](https://github.com/Poojanp-311/Flight-Booking-System-CaseStudy/assets/71166838/9468ed1d-0115-4af9-80c1-43afa2b32d4f)
-
-
+![image](https://github.com/Poojanp-311/Flight-Booking-System-CaseStudy/assets/71166838/927dab2a-6485-4ed8-bff5-2555d91b3a9e)
 
