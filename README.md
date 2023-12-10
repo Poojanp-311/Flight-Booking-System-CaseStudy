@@ -9,7 +9,6 @@
 - Managed Different Service Discovery by Netflix Eureka Server
 
 
-
 ## Micro-Services
 
 - Flight Search Service
@@ -23,6 +22,7 @@
 
 ### Architecture
 
-![image](https://github.com/Poojanp-311/Flight-Booking-System-CaseStudy/assets/71166838/8efaa9f7-b0be-4135-b2d3-81a1c5066732)
+![image](https://github.com/Poojanp-311/Flight-Booking-System-CaseStudy/assets/71166838/9468ed1d-0115-4af9-80c1-43afa2b32d4f)
+
 
 
